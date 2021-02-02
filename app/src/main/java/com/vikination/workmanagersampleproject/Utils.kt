@@ -13,6 +13,7 @@ class Utils {
         const val NOTIFICATION_CHANNEL_NAME = "test_chanel"
         const val NOTIFICATION_ID = 10
 
+        // show notification function
         fun showNotification(context: Context, message: String){
             val builder = NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_notification)

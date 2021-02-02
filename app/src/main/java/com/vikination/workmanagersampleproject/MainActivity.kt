@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // start worker button clicked
         binding.buttonStart.setOnClickListener {
             startScheduleOneTimeWork()
         }
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun startScheduleOneTimeWork(){
 
+        // work request
         val myWorkDelayRequest = OneTimeWorkRequestBuilder<MyWorkerOneTime>()
             .setInitialDelay(5,TimeUnit.SECONDS)
             .build()
