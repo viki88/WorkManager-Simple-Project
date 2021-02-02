@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private fun startScheduleOneTimeWork(){
 
         val myWorkDelayRequest = OneTimeWorkRequestBuilder<MyWorkerOneTime>()
-            .setInitialDelay(3,TimeUnit.SECONDS)
+            .setInitialDelay(5,TimeUnit.SECONDS)
             .build()
 
         // execute worker

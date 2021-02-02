@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WorkManagerSampleProject</string>
+    <string name="app_desc">Aplikasi ini akan memunculkan notifikasi setelah delay selama 5 detik</string>
 </resources>
