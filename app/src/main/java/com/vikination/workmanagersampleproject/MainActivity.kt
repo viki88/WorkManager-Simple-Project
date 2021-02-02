@@ -15,14 +15,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonStart.setOnClickListener {
-            startScheduleOneTimeWork()
+            startSchedulePeriodicWork()
         }
     }
 
-    private fun startScheduleOneTimeWork(){
+    private fun startSchedulePeriodicWork(){
 
-        val myWorkDelayRequest = OneTimeWorkRequestBuilder<MyWorkerOneTime>()
-            .setInitialDelay(3,TimeUnit.SECONDS)
+        val myWorkDelayRequest = PeriodicWorkRequestBuilder<PeriodicWorker>(15, TimeUnit.MINUTES)
+            .setInitialDelay(2,TimeUnit.SECONDS)
             .build()
 
         // execute worker

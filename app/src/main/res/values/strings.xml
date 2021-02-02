@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WorkManagerSampleProject</string>
+    <string name="app_desc">Aplikasi ini akan memunculkan notifikasi setiap 15 menit dengan delay 2 detik sebelum notifikasi pertama kali muncul.</string>
 </resources>
