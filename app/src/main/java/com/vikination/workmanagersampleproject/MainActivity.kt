@@ -22,9 +22,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun startScheduleOneTimeWork(){
 
+        // Constraint Builder
+        val constrains = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.UNMETERED)
+            .build()
+
         // work request
         val myWorkDelayRequest = OneTimeWorkRequestBuilder<MyWorkerOneTime>()
             .setInitialDelay(5,TimeUnit.SECONDS)
+            .setConstraints(constrains) // add constraints to worker
             .build()
 
         // execute worker
