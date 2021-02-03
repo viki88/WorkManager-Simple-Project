@@ -2,9 +2,7 @@ package com.vikination.workmanagersampleproject
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
-import androidx.work.workDataOf
+import androidx.work.*
 import com.vikination.workmanagersampleproject.databinding.ActivityMainBinding
 import java.util.concurrent.TimeUnit
 
@@ -18,18 +16,30 @@ class MainActivity : AppCompatActivity() {
 
         // start worker button clicked
         binding.buttonStart.setOnClickListener {
-            startOneTimeWorkWithInputData()
+            startScheduleOneTimeWork()
         }
     }
 
-    private fun startOneTimeWorkWithInputData(){
-        val showMessageWorkerRequest = OneTimeWorkRequestBuilder<ShowNotifMessageWorker>()
-            .setInitialDelay(3, TimeUnit.SECONDS)
-            .setInputData(workDataOf(ShowNotifMessageWorker.KEY_MESSAGE to "This is message from input data"))
+    private fun startScheduleOneTimeWork(){
+
+        // Constraint Builder
+        val constrains = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.UNMETERED)
             .build()
 
-        WorkManager.getInstance(this).enqueue(showMessageWorkerRequest)
+        // work request
+        val myWorkDelayRequest = OneTimeWorkRequestBuilder<MyWorkerOneTime>()
+            .setInitialDelay(5,TimeUnit.SECONDS)
+            .setConstraints(constrains) // add constraints to worker
+            .setBackoffCriteria(
+                BackoffPolicy.LINEAR,
+                OneTimeWorkRequest.MIN_BACKOFF_MILLIS,
+                TimeUnit.SECONDS)
+            .build()
 
+        // execute worker
+        WorkManager.getInstance(this)
+            .enqueue(myWorkDelayRequest)
     }
 
 }
